@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 ##Something is broken with wikipedia.page()
 ##I'm not sure what the problem is
 ##W tensorflow/core/framework/cpu_allocator_impl.cc:82] Allocation of 10689559328 exceeds 10% of free system memory.
@@ -58,6 +60,13 @@ def process(text):
 @click.option("--file")
 @click.option("--wikipage")
 def main(url, file, wikipage):
+    """Summarize text from a URL, file, or Wikipedia page.
+    
+    Examples:
+        ./main.py --url https://en.wikipedia.org/wiki/Python_(programming_language)
+    """
+
+
     if url:
         text = extract_from_url(url)
     if wikipage:
