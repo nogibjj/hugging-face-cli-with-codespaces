@@ -3,7 +3,7 @@
 ##Something is broken with wikipedia.page()
 ##I'm not sure what the problem is
 ##W tensorflow/core/framework/cpu_allocator_impl.cc:82] Allocation of 10689559328 exceeds 10% of free system memory.
-#Killed
+# Killed
 
 import click
 from transformers import pipeline
@@ -36,16 +36,17 @@ def extract_from_url(url):
     return text
 
 
-
-#write a function that uses wikipedia to return a page
+# write a function that uses wikipedia to return a page
 def get_page(text):
     try:
         page = wikipedia.page(text)
+        print(f"Page title: {page.title} parsed with length {len(page.content)}")
         return page.content
     except wikipedia.exceptions.PageError:
         return "Page not found"
     except wikipedia.exceptions.DisambiguationError:
         return "Ambiguous search"
+
 
 def process(text):
     summarizer = pipeline("summarization", model="t5-small")
@@ -61,11 +62,12 @@ def process(text):
 @click.option("--wikipage")
 def main(url, file, wikipage):
     """Summarize text from a URL, file, or Wikipedia page.
-    
+
     Examples:
         ./main.py --url https://en.wikipedia.org/wiki/Python_(programming_language)
+        ./main.py --file ./data.txt
+        ./main.py --wikipage "Python_(programming_language)"
     """
-
 
     if url:
         text = extract_from_url(url)
@@ -76,6 +78,7 @@ def main(url, file, wikipage):
             text = _f.read()
     click.echo(f"Summarized text from -> {url or file or wikipage}")
     click.echo(process(text))
+
 
 if __name__ == "__main__":
     # pylint: disable=no-value-for-parameter
