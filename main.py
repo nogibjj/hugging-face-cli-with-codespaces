@@ -72,10 +72,11 @@ def main(url, file, wikipage):
     if wikipage:
         text = get_page(wikipage)
     elif file:
-        with open(file, "r") as _f:
+        with open(file, "r", encoding="utf-8") as _f:
             text = _f.read()
     click.echo(f"Summarized text from -> {url or file or wikipage}")
     click.echo(process(text))
 
 if __name__ == "__main__":
+    # pylint: disable=no-value-for-parameter
     main()
