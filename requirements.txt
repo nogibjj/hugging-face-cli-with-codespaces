@@ -1,10 +1,13 @@
-transformers
-click==7.1.2
 tensorflow==2.9.1
 beautifulsoup4==4.11.1
 wikipedia==1.4.0
 pylint==2.15.0
 ipython==8.4.0
+pytest
 gradio
 sentencepiece
+black
+click
+transformers
+datasets
 # pytorch and cuda are installed/listed on environment.yml
