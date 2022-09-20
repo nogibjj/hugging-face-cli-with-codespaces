@@ -7,6 +7,8 @@ dependencies:
   - pytorch
   - cudatoolkit
   - numba
+  - huggingface 
+  - transformers
   - pip:
     - geopy==2.2.0
     - pytest==7.1.3
@@ -14,4 +16,3 @@ dependencies:
     - click==8.1.3
     - black==22.8.0
     - pylint==2.15.0
-    - transformers

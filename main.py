@@ -1,10 +1,5 @@
 #!/usr/bin/env python
 
-##Something is broken with wikipedia.page()
-##I'm not sure what the problem is
-##W tensorflow/core/framework/cpu_allocator_impl.cc:82] Allocation of 10689559328 exceeds 10% of free system memory.
-# Killed
-
 import click
 from transformers import pipeline
 import urllib.request
