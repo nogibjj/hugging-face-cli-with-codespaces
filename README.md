@@ -9,3 +9,10 @@ Repo that allows me to build AI tools on top of Hugging Face
 
 * [Use hugging face inference api](https://gradio.app/using_hugging_face_integrations/#using-hugging-face-inference-api)
 * [How to use inference](https://huggingface.co/docs/huggingface_hub/how-to-inference)
+
+## Verify GPU working
+
+* [Reference PyTorch site](https://pytorch.org/get-started/locally/)
+* `numba -s | grep cuda`
+* run `python utils/verify_cuda_pytorch.py`
+* run `nvidia-smi` should show a GPU

@@ -3,6 +3,8 @@ install:
 		pip install -r requirements.txt
 	#conda env create -f environment.yml
 	#conda activate hf
+	##had to do this as well
+	#conda install pytorch torchvision -c pytorch
 
 test:
 	#python -m pytest -vv test_main.py
