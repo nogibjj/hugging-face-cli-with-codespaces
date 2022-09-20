@@ -1,7 +1,6 @@
 name: base
 channels:
   - defaults
-  - pytorch
 dependencies:
   - conda
   - python=3.9
