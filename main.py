@@ -69,6 +69,7 @@ def main(url, file, wikipage):
         ./main.py --wikipage "Python_(programming_language)"
     """
 
+    text = ""
     if url:
         text = extract_from_url(url)
     if wikipage:

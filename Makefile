@@ -1,6 +1,8 @@
 install:
 	pip install --upgrade pip &&\
 		pip install -r requirements.txt
+	#conda env create -f environment.yml
+	#conda activate hf
 
 test:
 	#python -m pytest -vv test_main.py
