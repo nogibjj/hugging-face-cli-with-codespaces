@@ -27,6 +27,8 @@
             }
         }
     },
+    	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "conda env update -f environment.yml --prune && echo 'source conda base' >> ~/.bashrc && make install",
     features: {
     ghcr.io/devcontainers/features/nvidia-cuda: 1: {}
     },
