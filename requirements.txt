@@ -9,4 +9,5 @@ black
 click
 transformers
 datasets
+sklearn
 # pytorch and cuda are installed/listed on environment.yml
