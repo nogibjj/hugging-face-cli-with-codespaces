@@ -6,6 +6,8 @@ Repo that allows me to build AI tools on top of Hugging Face
 
 ## Try out fine-tuning
 
+[Run this script](https://github.com/nogibjj/hugging-face-cli-with-codespaces/blob/main/fineTuningExample/ftHelloWorld.py)  
+
 * [Fine-tuning HuggingFace Tutorial](https://huggingface.co/docs/transformers/training)
 
 "When you use a pretrained model, you train it on a dataset specific to your task. This is known as fine-tuning, an incredibly powerful training technique. In this tutorial, you will fine-tune a pretrained model with a deep learning framework of your choice:"
