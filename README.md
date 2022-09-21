@@ -36,3 +36,8 @@ Use split terminal and do:
 * `numba -s | grep cuda`
 * run `python utils/verify_cuda_pytorch.py`
 * run `nvidia-smi` should show a GPU
+
+## References
+
+* [Monitoring GPU Training](https://unix.stackexchange.com/questions/38560/gpu-usage-monitoring-cuda)
+
