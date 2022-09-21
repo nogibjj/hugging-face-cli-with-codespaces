@@ -12,6 +12,10 @@ COPY environment.yml* .devcontainer/noop.txt /tmp/conda-tmp/
 RUN if [ -f "/tmp/conda-tmp/environment.yml" ]; then umask 0002 && /opt/conda/bin/conda env update -n base -f /tmp/conda-tmp/environment.yml; fi \
     && rm -rf /tmp/conda-tmp
 
+COPY requirements.txt /tmp/pip-tmp/
+RUN umask 0002 && /opt/conda/bin/pip --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
+    && rm -rf /tmp/pip-tmp
+
 # [Optional] Uncomment to install a different version of Python than the default
 # RUN conda install -y python=3.6 \
 #     && pip install --no-cache-dir pipx \
