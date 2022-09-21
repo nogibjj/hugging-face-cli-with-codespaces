@@ -23,6 +23,13 @@ https://huggingface.co/docs/transformers/training
 * [Use hugging face inference api](https://gradio.app/using_hugging_face_integrations/#using-hugging-face-inference-api)
 * [How to use inference](https://huggingface.co/docs/huggingface_hub/how-to-inference)
 
+## Monitor GPU while Training
+
+Use split terminal and do:
+
+`nvidia-smi -l 1` in one
+`htop` in another
+
 ## Verify GPU working
 
 * [Reference PyTorch site](https://pytorch.org/get-started/locally/)
