@@ -10,6 +10,7 @@ from transformers import pipeline
 import gradio as gr
 import wikipedia
 
+
 # write a function that parses a wikipedia page and then summarizes it
 def get_page(text):
     try:

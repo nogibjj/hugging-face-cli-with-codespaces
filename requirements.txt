@@ -10,4 +10,6 @@ click
 transformers
 datasets
 sklearn
+git+https://github.com/openai/whisper.git
+newspaper3k
 # pytorch and cuda are installed/listed on environment.yml
