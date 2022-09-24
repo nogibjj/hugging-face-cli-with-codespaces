@@ -6,6 +6,8 @@ Repo that allows me to build AI tools on top of Hugging Face
 
 ## Try out fine-tuning
 
+[Run this script](https://github.com/nogibjj/hugging-face-cli-with-codespaces/blob/main/fineTuningExample/ftHelloWorld.py)  
+
 * [Fine-tuning HuggingFace Tutorial](https://huggingface.co/docs/transformers/training)
 
 "When you use a pretrained model, you train it on a dataset specific to your task. This is known as fine-tuning, an incredibly powerful training technique. In this tutorial, you will fine-tune a pretrained model with a deep learning framework of your choice:"
@@ -21,9 +23,21 @@ https://huggingface.co/docs/transformers/training
 * [Use hugging face inference api](https://gradio.app/using_hugging_face_integrations/#using-hugging-face-inference-api)
 * [How to use inference](https://huggingface.co/docs/huggingface_hub/how-to-inference)
 
+## Monitor GPU while Training
+
+Use split terminal and do:
+
+`nvidia-smi -l 1` in one
+`htop` in another
+
 ## Verify GPU working
 
 * [Reference PyTorch site](https://pytorch.org/get-started/locally/)
 * `numba -s | grep cuda`
 * run `python utils/verify_cuda_pytorch.py`
 * run `nvidia-smi` should show a GPU
+
+## References
+
+* [Monitoring GPU Training](https://unix.stackexchange.com/questions/38560/gpu-usage-monitoring-cuda)
+
