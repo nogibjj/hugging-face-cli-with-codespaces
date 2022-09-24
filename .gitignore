@@ -1,6 +1,7 @@
 #fine tune ignore
 fineTuningExample/test_trainer/
 assets
+DemoAssets
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
