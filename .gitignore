@@ -2,6 +2,7 @@
 fineTuningExample/test_trainer/
 assets
 DemoAssets
+transcribe.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
