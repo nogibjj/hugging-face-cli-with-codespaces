@@ -21,6 +21,8 @@ test:
 format:
 	black *.py
 
+refactor: format lint
+
 lint:
 	pylint --disable=R,C *.py
 
