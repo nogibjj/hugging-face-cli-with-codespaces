@@ -9,13 +9,14 @@ import click
 import whisper
 
 
-
 def get_files_recursive(directory, pattern=None, action=None):
     """Return a list of files matching a pattern in a directory recursively"""
 
     if pattern is None:
         pattern = re.compile(r".*\.(wav|mp3|mp4|avi|mov|flv|mkv|wmv)$")
-    files = [str(p) for p in pathlib.Path(directory).rglob("*") if pattern.match(str(p))]
+    files = [
+        str(p) for p in pathlib.Path(directory).rglob("*") if pattern.match(str(p))
+    ]
     if action is not None:
         files = [action(f) for f in files]
     return files
@@ -26,7 +27,7 @@ def transcribe_file(file):
 
     print("Attempting {}".format(file))
     transcribed_file = f"{file}.transcribed.txt"
-    #if the file has already been transcribed, skip it
+    # if the file has already been transcribed, skip it
     if pathlib.Path(transcribed_file).exists():
         print("Skipping {}".format(file))
         return transcribed_file
@@ -34,9 +35,10 @@ def transcribe_file(file):
         print("Confirmed Transcribing {}".format(file))
         model = whisper.load_model("base")
         result = model.transcribe(file)
-        with open(transcribed_file, "w") as f:
-            f.write(result)
+        with open(transcribed_file, "w", encoding="utf-8") as f:
+            f.write(result["text"])
         return transcribed_file
+
 
 # click group
 @click.group()
