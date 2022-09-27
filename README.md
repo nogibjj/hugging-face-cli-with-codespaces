@@ -2,7 +2,7 @@
 
 
 # hugging-face-cli-with-codespaces
-Repo that allows me to build AI tools on top of Hugging Face
+Repo that allows me to build AI tools on top of Hugging Face and OpenAI Whisper
 
 ## Try out fine-tuning
 
