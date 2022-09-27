@@ -12,6 +12,7 @@ import click
 import whisper
 import time
 import subprocess
+import multiprocessing
 
 
 def transcribe_file_cli(file, modelType="large"):
@@ -22,7 +23,7 @@ def transcribe_file_cli(file, modelType="large"):
     cmd_list = ["whisper", file, "--model", modelType]
     print(f"attempting command: {' '.join(cmd_list)}")
     with open(output_file, "w", encoding="utf-8") as f:
-        ret = subprocess.run(cmd_list, stdout=f)
+        ret = subprocess.run(cmd_list, stdout=f, check=True)
     return ret
 
 
@@ -89,6 +90,13 @@ def transcribe_file(file, modelType="large", force=True, climode=True):
 @click.group()
 def cli():
     """Transcribe and summarize a directory of audio or video files"""
+
+
+@cli.command("cpu-count")
+def cpucount():
+    """Return the number of CPUs"""
+
+    print(f"CPU Count: {multiprocessing.cpu_count()}")
 
 
 @cli.command("transcribe")
