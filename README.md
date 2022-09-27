@@ -37,6 +37,22 @@ Use split terminal and do:
 * run `python utils/verify_cuda_pytorch.py`
 * run `nvidia-smi` should show a GPU
 
+## Notes on OS X M1
+
+```bash
+conda create -n hf python=3.9
+conda activate hf
+conda env config vars set CONDA_SUBDIR=osx-arm64
+#install nightly
+pip install -U --pre torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/nightly/cpu
+#install rust if not installed
+curl — proto ‘=https’ — tlsv1.2 -sSf https://sh.rustup.rs | sh
+#install via brew
+brew install cmake
+brew install pkg-config
+```
+
+
 ## References
 
 * [Monitoring GPU Training](https://unix.stackexchange.com/questions/38560/gpu-usage-monitoring-cuda)

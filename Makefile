@@ -6,6 +6,9 @@ install:
 	##had to do this as well
 	#conda install pytorch torchvision -c pytorch
 	#conda install -c conda-forge pyarrow
+install-m1:
+	pip install --upgrade pip &&\
+		pip install -r m1-requirements.txt
 
 install-only-conda-hf:
 	#conda create --name fineTune

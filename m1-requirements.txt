@@ -1,0 +1,7 @@
+# install sentence transformers:  https://www.sbert.net/docs/usage/semantic_textual_similarity.html
+#pip install sentence-transformers
+transformers
+click
+pylint
+black
+pytest

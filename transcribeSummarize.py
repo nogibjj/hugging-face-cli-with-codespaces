@@ -22,8 +22,10 @@ def transcribe_file_cli(file, modelType="base.en", language="en"):
     root_dir = pathlib.Path(file).parent
     file_name_stem = pathlib.Path(file).stem
     file_type = pathlib.Path(file).suffix
-    print(f"Working in: {root_dir} with file_name_stem: {file_name_stem} and extension: {file_type}")
-    #import ipdb; ipdb.set_trace()
+    print(
+        f"Working in: {root_dir} with file_name_stem: {file_name_stem} and extension: {file_type}"
+    )
+    # import ipdb; ipdb.set_trace()
     # write the transcribed file into the same directory
     output_file = f"{root_dir}/{file_name_stem}{file_type}.transcribed.txt"
     print(f"Created {output_file} using CLI")

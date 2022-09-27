@@ -4,6 +4,14 @@ assets
 DemoAssets
 transcribe.txt
 
+#transcribe
+*.mov.txt
+*.mov.vtt
+*.mp4.txt
+*.mp4.vtt
+*.wav.vtt
+*.wav.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
