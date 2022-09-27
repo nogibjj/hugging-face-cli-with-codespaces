@@ -15,12 +15,19 @@ import subprocess
 import multiprocessing
 
 
-def transcribe_file_cli(file, modelType="large"):
+def transcribe_file_cli(file, modelType="base.en", language="en"):
     """Transcribe a file using the CLI and return the result"""
 
-    print(f"Transcribing {file} using CLI")
-    output_file = file + ".transcribed.txt"
-    cmd_list = ["whisper", file, "--model", modelType]
+    # get root directory of file
+    root_dir = pathlib.Path(file).parent
+    file_name_stem = pathlib.Path(file).stem
+    file_type = pathlib.Path(file).suffix
+    print(f"Working in: {root_dir} with file_name_stem: {file_name_stem} and extension: {file_type}")
+    #import ipdb; ipdb.set_trace()
+    # write the transcribed file into the same directory
+    output_file = f"{root_dir}/{file_name_stem}{file_type}.transcribed.txt"
+    print(f"Created {output_file} using CLI")
+    cmd_list = ["whisper", file, "--model", modelType, "--language", language]
     print(f"attempting command: {' '.join(cmd_list)}")
     with open(output_file, "w", encoding="utf-8") as f:
         ret = subprocess.run(cmd_list, stdout=f, check=True)
@@ -103,7 +110,7 @@ def cpucount():
 @click.option("--directory", default=".", help="Directory to transcribe")
 @click.option("--pattern", default=None)
 @click.option("--ignore", default=".cmproj", help="Pattern to ignore files")
-@click.option("--model", default="medium.en", help="Model to use")
+@click.option("--model", default="base.en", help="Model to use")
 @click.option("--force", is_flag=True, help="Force transcribe")
 @click.option("--climode", is_flag=True, help="Use CLI mode")
 def transcribe(
