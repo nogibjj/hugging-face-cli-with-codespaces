@@ -2,6 +2,9 @@
 
 """"
 Transcribes and summarizes a directory of audio or video files
+
+You can use whisper in CLI mode or as a python module.
+
 """
 import pathlib
 import re
@@ -10,9 +13,9 @@ import whisper
 import time
 import subprocess
 
-# write a function to summarize the file using python whisper --model large
-# transcribe the file and write the output to a file
+
 def transcribe_file_cli(file, modelType="large"):
+    """Transcribe a file using the CLI and return the result"""
     output_file = file + ".transcribed.txt"
     cmd_list = [
         "whisper",
@@ -63,7 +66,13 @@ def transcribe_file(file, modelType="large", force=True, climode=True):
             print("Forcing transcription of {}".format(file))
         if climode:
             print(f"Transcribing {file} using CLI")
-            return transcribe_file_cli(file, modelType)
+            start = time.time()
+            tfile_cli = transcribe_file_cli(file, modelType)
+            duration = f"{time.time() - start:.2f}"
+            print(
+                f"Transcribed Complete for {transcribed_file} with duration: {duration}"
+            )
+            return tfile_cli
         try:
             print("Confirmed Transcribing {}".format(file))
             model = whisper.load_model(modelType)
@@ -94,18 +103,25 @@ def cli():
 
 @cli.command("transcribe")
 @click.option("--directory", default=".", help="Directory to transcribe")
+@click.option("--pattern", default=None)
+@click.option("--ignore", default=".cmproj", help="Pattern to ignore files")
 @click.option("--model", default="large", help="Model to use")
 @click.option("--force", is_flag=True, help="Force transcribe")
 @click.option("--climode", is_flag=True, help="Use CLI mode")
-@click.option("--pattern", default=r".*\.(wav|mp3|mp4|avi|mov|flv|mkv|wmv)$")
-@click.option("--ignore", default=".cmproj", help="Pattern to ignore files")
-def transcribe(directory, model, force, climode, pattern, ignore):
+def transcribe(
+    directory,
+    pattern,
+    ignore,
+    model,
+    force,
+    climode,
+):
     """ "Transcribes a directory of audio or video files"""
 
-    files = get_files_recursive(directory, pattern=pattern, ignore=ignore)
-    for file in files:
-        print(f"Transcribing {file}")
-        transcribe_file(file, modelType=model, force=force, climode=climode)
+    #import ipdb; ipdb.set_trace()
+    files = get_files_recursive(directory, pattern, ignore)
+    for f in files:
+        transcribe_file(f, modelType=model, force=force, climode=climode)
 
 
 @cli.command("discover")
@@ -119,6 +135,7 @@ def discover(
 ):
     """Discover files in a directory matching a pattern"""
 
+    #import ipdb; ipdb.set_trace()
     files = get_files_recursive(directory, pattern, ignore)
     for f in files:
         print(f)
