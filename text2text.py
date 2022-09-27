@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 import click
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
-import pathlib
 import re
+import pathlib
 import time
 
-tokenizer = AutoTokenizer.from_pretrained("google/pegasus-xsum")
-model = AutoModelForSeq2SeqLM.from_pretrained("google/pegasus-xsum")
+tokenizer = AutoTokenizer.from_pretrained("sshleifer/distilbart-cnn-12-6")
+model = AutoModelForSeq2SeqLM.from_pretrained("sshleifer/distilbart-cnn-12-6")
 
 
 def summarize_file(file):
@@ -20,11 +20,12 @@ def summarize_file(file):
     return tgt_text[0]
 
 
+# write the summary to a file
 def summarize_file_write(file):
     """Summarize a file and write the result to a file"""
 
     summarized_text = summarize_file(file)
-    summarized_file = f"{file}.one-line-summarized.txt"
+    summarized_file = f"{file}.paragraph-summarized.txt"
     with open(summarized_file, "w", encoding="utf-8") as f:
         f.write(summarized_text)
     return summarized_text
@@ -46,55 +47,43 @@ def get_files(directory, pattern, ignore=None, action=None):
     return files
 
 
+# click group
 @click.group()
 def cli():
     """Summarizes files"""
 
 
-@cli.command("one-line-summarize")
-@click.argument("file", type=click.Path(exists=True))
-def one_line_summarize(file):
-    """Summarizes a file"""
-
-    print(summarize_file(file))
-    summarize_file_write(file)
-
-
-# find all transcribed files in a directory
+# discover files
 @cli.command("discover")
 @click.argument("directory", type=click.Path(exists=True))
 def discover(directory):
     """Discover transcribed files"""
 
+    print("Discovering files")
     files = get_files(directory, None, None, None)
     print(files)
 
 
-@cli.command("one-line-summarize-dir")
-@click.argument("directory", type=click.Path(exists=True))
-@click.option("--pattern", default=None, help="Regex pattern to match files")
-def one_line_summarize_dir(directory, pattern):
-    """Summarizes a directory of files
+# summarize files or a directory
+@cli.command("summarize")
+@click.option("--file", type=click.Path(exists=True))
+@click.option("--directory", "-d", type=click.Path(exists=True))
+def summarize(file, directory):
+    """Summarize a file and return the result"""
 
-    Example:
-    python oneLineSummarize.py one-line-summarize-dir /Volumes/SHARED/RecordedCourses
-    """
-
-    start = time.time()
-    files = get_files(directory, pattern)
-    for file in files:
-        print(f"Attempting one-line summarize {file}")
-        # if the file has already been summarized, skip it
-        summarized_file = f"{file}.one-line-summarized.txt"
-        if pathlib.Path(summarized_file).exists():
-            print(f"Skipping {summarized_file} because it already exists")
-            continue
-        start_summarize = time.time()
-        summarize_file_write(file)
-        end_summarize = time.time()
-        print(f"Summarized {file} in {end_summarize - start_summarize} seconds")
-    end = time.time()
-    print(f"Summarized {len(files)} files in {end - start} seconds")
+    if directory is not None:
+        start = time.time()
+        files = get_files(directory, None, None, None)
+        for f in files:
+            sum_time = time.time()
+            summarize_file_write(f)
+            print(f"Summarized {f} in {time.time() - sum_time} seconds")
+        end = time.time()
+        print(f"Summarized total {len(files)} in {end - start} seconds")
+    if file is not None:
+        print(f"Attempting paragraph summarize: {file}")
+        summary = summarize_file(file)
+        print(summary)
 
 
 if __name__ == "__main__":
