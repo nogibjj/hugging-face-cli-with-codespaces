@@ -103,7 +103,7 @@ def cpucount():
 @click.option("--directory", default=".", help="Directory to transcribe")
 @click.option("--pattern", default=None)
 @click.option("--ignore", default=".cmproj", help="Pattern to ignore files")
-@click.option("--model", default="large", help="Model to use")
+@click.option("--model", default="medium.en", help="Model to use")
 @click.option("--force", is_flag=True, help="Force transcribe")
 @click.option("--climode", is_flag=True, help="Use CLI mode")
 def transcribe(
