@@ -118,7 +118,7 @@ def transcribe(
 ):
     """ "Transcribes a directory of audio or video files"""
 
-    #import ipdb; ipdb.set_trace()
+    # import ipdb; ipdb.set_trace()
     files = get_files_recursive(directory, pattern, ignore)
     for f in files:
         transcribe_file(f, modelType=model, force=force, climode=climode)
@@ -135,7 +135,7 @@ def discover(
 ):
     """Discover files in a directory matching a pattern"""
 
-    #import ipdb; ipdb.set_trace()
+    # import ipdb; ipdb.set_trace()
     files = get_files_recursive(directory, pattern, ignore)
     for f in files:
         print(f)
