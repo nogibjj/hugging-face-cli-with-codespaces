@@ -16,24 +16,14 @@ import subprocess
 
 def transcribe_file_cli(file, modelType="large"):
     """Transcribe a file using the CLI and return the result"""
+
+    print(f"Transcribing {file} using CLI")
     output_file = file + ".transcribed.txt"
-    cmd_list = [
-        "whisper",
-        file,
-        "--model",
-        modelType,
-        ">",
-        output_file,
-    ]
+    cmd_list = ["whisper", file, "--model", modelType]
     print(f"attempting command: {' '.join(cmd_list)}")
-    result = subprocess.run(
-        cmd_list,
-        shell=True,
-        stdout=subprocess.PIPE,
-        check=True,
-    )
-    print(result.stdout)
-    return output_file
+    with open(output_file, "w", encoding="utf-8") as f:
+        ret = subprocess.run(cmd_list, stdout=f)
+    return ret
 
 
 def get_files_recursive(directory, pattern=None, ignore=None, action=None):
