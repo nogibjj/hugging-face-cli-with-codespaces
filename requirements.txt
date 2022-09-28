@@ -13,4 +13,5 @@ sklearn
 git+https://github.com/openai/whisper.git
 newspaper3k
 ipdb
+git+https://github.com/LIAAD/yake
 # pytorch and cuda are installed/listed on environment.yml
