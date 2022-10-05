@@ -1,4 +1,5 @@
 [![Python application test with Github Actions using devcontainers](https://github.com/nogibjj/hugging-face-cli-with-codespaces/actions/workflows/main.yml/badge.svg)](https://github.com/nogibjj/hugging-face-cli-with-codespaces/actions/workflows/main.yml)
+[![Codespaces Prebuilds](https://github.com/nogibjj/hugging-face-cli-with-codespaces/actions/workflows/codespaces/create_codespaces_prebuilds/badge.svg)](https://github.com/nogibjj/hugging-face-cli-with-codespaces/actions/workflows/codespaces/create_codespaces_prebuilds)
 
 
 # hugging-face-cli-with-codespaces
